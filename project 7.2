@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+    int a;
+    float b;
+    char c;
+    cout<<"Enter the value of a= ";
+    cin>>a;
+    cout<<"Enter the value of b= ";
+    cin>>b;
+    
+    try{
+        if(a==0){
+            throw a;
+        }
+        if(b==2.5){
+            throw b;
+        }
+    cout<<"NONE";
+    }
+    catch (const int p){
+        cout<<"Integer value= "<<p;
+    }
+    catch (const float q){
+        cout<<"Float value= "<<q;
+    }
+    
+    return 0;
+}
