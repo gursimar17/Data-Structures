@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+int num_1;
+int num_2;
+int div;
+
+cout<<"Enter the value of number 1= ";
+cin>>num_1;
+cout<<"Enter the value of number 2= ";
+cin>>num_2;
+
+try{
+    if(num_2==0){
+        throw"You are dividing the number by zero.";
+    }
+    div=num_1/num_2;
+    cout<<div;
+}
+
+catch(const char *p){
+    cout<<p;
+}
+    return 0;
+}
