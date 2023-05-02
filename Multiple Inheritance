@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+// Multiple Inheritance                   
+class parent_1{
+    public:
+    int x;
+    parent_1(){
+  x=1;      
+    }
+    void display(){
+        cout<<"Value of x= "<<x<<endl;
+    }
+};                   
+
+class parent_2{
+    public:
+    int y;
+    parent_2(){
+        y=2;
+    }
+    void display(){
+        cout<<"Value of y= "<<y<<endl;
+    }
+};
+
+class child:public parent_1,public parent_2{
+    public:
+    void display(){
+        cout<<"Value of x,y= "<<x<<endl<<y;
+    }
+};
+
+int main() {
+child obj;
+obj.parent_1::display();
+obj.parent_2::display();
+obj.display();
+    return 0;
+}
