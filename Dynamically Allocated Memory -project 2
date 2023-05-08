@@ -1,0 +1,27 @@
+/* WAP to allocate memory dynamically for an object of a given class using class’s constructor.*/
+
+#include <iostream>
+using namespace std;
+
+class A{
+public:
+A()
+{
+    cout<<"Constructor"<<endl;
+}
+~A()
+{
+    cout<<"Destructor"<<endl;    
+}
+
+};
+
+int main() {
+int size;
+cout<<"Enter the size=";
+cin>>size;
+A *ptr=new A[size];
+delete []ptr;
+
+    return 0;
+}
