@@ -1,0 +1,24 @@
+/* WAP to calculate sum of marks of n students of a class inputted via dynamic memory allocation.*/
+
+#include <iostream>
+using namespace std;
+
+int main() {
+int size;
+int sum=0;
+int *ptr=new int[size];
+ cout<<"Enter the size=";
+ cin>>size;
+ cout<<"Enter the marks scored by students=";
+ for(int i=0;i<size;i++)
+ {
+ cin>>ptr[i];    
+ }
+ for(int i=0;i<size;i++)
+{
+  sum=sum+ptr[i];  
+}
+ cout<<"Sum of Marks="<<sum;
+ delete[]ptr;
+    return 0;
+}
