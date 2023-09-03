@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+class node
+{   public:
+    int data;
+    node *next;
+};
+
+void linked_list_traversal(node *ptr)
+{
+    while(ptr!=NULL)
+    {
+        cout<<ptr->data<<endl;
+        ptr=ptr->next;
+    }
+}
+
+node * insertion_at_first(node *head,int data)
+{
+    node *ptr=new node;
+    ptr->next=head;
+    ptr->data=data;
+    return ptr;
+}
+
+int main()
+{   
+    node *head=new node;
+    node *second=new node;
+    node *third=new node;
+    node *fourth=new node;
+    head->data=1;
+    head->next=second;
+    second->data=2;
+    second->next=third;
+    third->data=3;
+    third->next=fourth;
+    fourth->data=4;
+    fourth->next=NULL;
+    linked_list_traversal(head);
+    head=insertion_at_first(head,10);
+    linked_list_traversal(head);
+    return 0;
+}
