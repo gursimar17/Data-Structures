@@ -25,7 +25,7 @@ node * delete_at_end(node *head)
         p=p->next;
         q=q->next;
     }
-    p->next=q->next;
+    p->next=NULL;
     delete[] q;
     return head;
 }
