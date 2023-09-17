@@ -1,0 +1,77 @@
+#include<iostream>
+using namespace std;
+
+class stack
+{
+    public:
+    int size;
+    int top;
+    int *array;
+};
+
+int stack_empty(stack *ptr)
+{
+    if(ptr->top==-1)
+    {
+       return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int stack_full(stack *ptr)
+{
+    if(ptr->top==ptr->size-1)
+    {
+        return 1;
+    }
+    else 
+    {
+        return 0;
+    }
+}
+
+void push(stack *ptr,int value)
+{
+    if(stack_full(ptr))
+    {
+        cout<<"Stack overflow. Cannot performed push operation."<<endl;
+    }
+    else
+    {
+        ptr->top++;
+        ptr->array[ptr->top]=value;
+    }
+}
+
+int pop(stack *ptr)
+{
+    if(stack_empty(ptr))
+    {
+         cout<<"Stack underflow. Cannot performed pop operation."<<endl;
+    }
+    else
+    {
+        int value=ptr->array[ptr->top];
+        ptr->top--;
+        return value;
+    }
+}
+
+int main()
+{
+    stack *sp=new stack();
+    sp->size=5;
+    sp->top=-1;
+    sp->array=new int();
+    push(sp,10);
+    push(sp,20);
+    push(sp,30);
+    push(sp,40);
+    push(sp,50);
+    cout<<"Value popped="<<pop(sp)<<endl;
+    cout<<"Value popped="<<pop(sp)<<endl;
+    return 0;
+}
