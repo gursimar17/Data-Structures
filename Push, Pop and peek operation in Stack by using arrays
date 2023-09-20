@@ -60,6 +60,19 @@ int pop(stack *ptr)
     }
 }
 
+int peek(stack *ptr,int i)
+{   
+    int position=ptr->top-i+1;
+    if(position<0)
+    {
+        cout<<"Invalid position"<<endl;
+    }
+    else
+    {
+        return ptr->array[position];
+    }
+}
+
 int main()
 {
     stack *sp=new stack();
@@ -71,6 +84,10 @@ int main()
     push(sp,30);
     push(sp,40);
     push(sp,50);
+    for(int i=1;i<=sp->top+1;i++)
+    {
+    cout<<"The value at position"<<" "<<i<<" "<<"is="<<peek(sp,i)<<endl;
+    }
     cout<<"Value popped="<<pop(sp)<<endl;
     cout<<"Value popped="<<pop(sp)<<endl;
     return 0;
