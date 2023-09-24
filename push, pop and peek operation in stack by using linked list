@@ -1,0 +1,105 @@
+#include<iostream>
+using namespace std;
+
+class node
+{
+    public:
+    int data;
+    node *next;
+};
+
+node *top=NULL;
+
+void linkedList_traverse(node *ptr)
+{
+    while(ptr!=NULL)
+    {
+        cout<<"Element="<<ptr->data<<endl;
+        ptr=ptr->next;
+    }
+}
+
+int full(node *top)
+{
+    node *n=new node();
+    if(n==NULL)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+node* push(node *top,int value)
+{
+    if(full(top))
+    {
+        cout<<"Stack Overflow"<<endl;
+    }
+    else
+    {
+        node *n=new node();
+        n->data=value;
+        n->next=top;
+        top=n;
+        return top;
+    }
+}
+
+int empty(node *top)
+{
+    if(top==NULL)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int pop(node *tp)
+{
+    if(empty(tp))
+    {
+        cout<<"Stack Underflow"<<endl;
+    }
+    else
+    {
+        node *n=tp;
+        top=tp->next;
+        int value=n->data;
+        delete []n;
+        return value;
+    }
+}
+
+int peek(int position)
+{
+    node *ptr=top;
+    for(int i=0;i<position-1 && ptr!=NULL;i++)
+    {
+        ptr=ptr->next;
+    }
+    if(ptr!=NULL)
+    {
+        return ptr->data;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+int main()
+{
+    top=push(top,10);
+    top=push(top,20);
+    top=push(top,30);
+    cout<<"Value at position 1="<<peek(1)<<endl;
+    cout<<"Popped Element="<<pop(top)<<endl;
+    linkedList_traverse(top);
+    return 0;
+}
