@@ -1,0 +1,130 @@
+#include<iostream>
+using namespace std;
+
+class stack
+{
+    public:
+    int size;
+    int top;
+    char *array;
+};
+
+int stack_empty(stack *ptr)
+{
+    if(ptr->top==-1)
+    {
+       return -1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int stack_full(stack *ptr)
+{
+    if(ptr->top==ptr->size-1)
+    {
+        return 1;
+    }
+    else 
+    {
+        return 0;
+    }
+}
+
+void push(stack *ptr,char value)
+{
+    if(stack_full(ptr))
+    {
+        cout<<"Stack overflow. Cannot performed push operation."<<endl;
+    }
+    else
+    {
+        ptr->top++;
+        ptr->array[ptr->top]=value;
+    }
+}
+
+char pop(stack *ptr)
+{
+    if(stack_empty(ptr))
+    {
+         cout<<"Stack underflow. Cannot performed pop operation."<<endl;
+    }
+    else
+    {
+        char value=ptr->array[ptr->top];
+        ptr->top--;
+        return value;
+    }
+}
+
+int match(char a,char b)
+{
+    if(a=='(' && b==')')
+    {
+        return 1;
+    }
+    else if(a=='[' && b==']')
+    {
+        return 1;
+    }
+    else if(a=='{' && b=='}')
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int paranthesis(char *p)
+{
+    stack *sp=new stack();
+    sp->size=10;
+    sp->top=-1;
+    sp->array=new char();
+    for(int i=0;p[i]!='\0';i++)
+    {
+        if(p[i]=='(' || p[i]=='[' || p[i]=='{')
+        {
+            push(sp,p[i]);
+        }
+        else if(p[i]==')' || p[i]==']' || p[i]=='}')
+        {
+            if(stack_empty(sp))
+            {
+                return 0;
+            }
+                char popped=pop(sp);
+            if(!match(popped,p[i]))
+            {
+                return 0;
+            }
+        }
+    }
+    if(stack_empty(sp))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int main()
+{
+    char *p="{[()]}";
+    if(paranthesis(p))
+    {
+        cout<<"Paranthesis is balanced";
+    }
+    else
+    {
+        cout<<"Paranthesis is not balanced";
+    }
+    return 0;
+}
