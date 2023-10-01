@@ -1,0 +1,141 @@
+#include<iostream>
+using namespace std;
+
+class stack
+{
+    public:
+    int size;
+    int top;
+    char *array;
+};
+
+int stack_top(stack *st)
+{
+    return st->array[st->top];
+}
+
+int stack_empty(stack *ptr)
+{
+    if(ptr->top==-1)
+    {
+       return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int stack_full(stack *ptr)
+{
+    if(ptr->top==ptr->size-1)
+    {
+        return 1;
+    }
+    else 
+    {
+        return 0;
+    }
+}
+
+void push(stack *ptr,char value)
+{
+    if(stack_full(ptr))
+    {
+        cout<<"Stack overflow. Cannot performed push operation."<<endl;
+    }
+    else
+    {
+        ptr->top++;
+        ptr->array[ptr->top]=value;
+    }
+}
+
+char pop(stack *ptr)
+{
+    if(stack_empty(ptr))
+    {
+         cout<<"Stack underflow. Cannot performed pop operation."<<endl;
+    }
+    else
+    {
+        char value=ptr->array[ptr->top];
+        ptr->top--;
+        return value;
+    }
+}
+
+int op(char ch)
+{
+    if(ch=='+' || ch=='-' || ch=='*' || ch=='/')
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int precedence(char ch)
+{
+    if(ch=='*' || ch=='/')
+    {
+        return 2;
+    }
+    else if(ch=='+' || ch=='-')
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+char *infix_to_postfix(char *infix)
+{
+    stack *sp=new stack();
+    sp->size=10;
+    sp->top=-1;
+    sp->array=new char();
+    char *postfix=new char();
+    int i=0;
+    int j=0;
+    while(infix[i]!='\0')
+    {
+        if(!op(infix[i]))
+        {
+            postfix[j]=infix[i];
+            i++;
+            j++;
+        }
+        else
+        {
+            if(precedence(infix[i])>precedence(stack_top(sp)))
+            {
+                push(sp,infix[i]);
+                i++;
+            }
+            else
+            {
+                postfix[j]=pop(sp);
+                j++;
+            }
+        }
+    }
+    while(!stack_empty(sp))
+    {
+        postfix[j]=pop(sp);
+        j++;
+    }
+    postfix[j]='\0';
+    return postfix;
+}
+
+int main()
+{
+    char *infix="x-y/z-k*d";
+    cout<<"Postfix="<<infix_to_postfix(infix);  
+    return 0;
+}
