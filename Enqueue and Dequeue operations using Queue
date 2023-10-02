@@ -1,0 +1,86 @@
+#include<iostream>
+using namespace std;
+
+class queue
+{
+    public:
+    int size;
+    int rear;
+    int front;
+    int *array;
+};
+
+int queue_full(queue *q)
+{
+    if(q->rear==q->size-1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int queue_empty(queue *q)
+{
+    if(q->front==q->rear)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void enqueue(queue *q,int value)
+{
+    if(queue_full(q))
+    {
+        cout<<"Queue is full"<<endl;
+    }
+    else
+    {
+        q->rear++;
+        q->array[q->rear]=value;
+        cout<<"Enqueue element="<<value<<endl;
+    }
+}
+
+int dequeue(queue *q)
+{
+    int a=-1;
+    if(queue_empty(q))
+    {
+        cout<<"Queue is empty"<<endl;
+    }
+    else
+    {
+        q->front++;
+        a=q->array[q->front];
+    }
+    return a;
+}
+
+int main()
+{
+    queue *q=new queue();
+    q->size=3;
+    q->front=-1;
+    q->rear=-1;
+    q->array=new int();
+    enqueue(q,1);
+    enqueue(q,2);
+    enqueue(q,3);
+    cout<<"Dequeue element="<<dequeue(q)<<endl;
+    if(queue_empty(q))
+    {
+        cout<<"Queue is empty"<<endl;
+    }
+    if(queue_full(q))
+    {
+        cout<<"Queue is full"<<endl;
+    }
+    return 0;
+}
