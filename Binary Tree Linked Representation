@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+class node
+{
+    public:
+    int data;
+    node *left;
+    node *right;
+};
+
+node* create(int data)
+{
+    node *n=new node();
+    n->data=data;
+    n->left=NULL;
+    n->right=NULL;
+    return n;
+}
+
+int main()
+{
+    node *p=create(10);
+    node *p1=create(20);
+    node *p2=create(30);
+    node *p3=create(40);
+    node *p4=create(50);
+    node *p5=create(60);
+    node *p6=create(70);
+    p->left=p1;
+    p->right=p2;
+    p1->left=p3;
+    p1->right=p4;
+    p2->left=p5;
+    p2->right=p6;
+    cout<<"P node data="<<p->data<<endl;
+    cout<<"P1 node data="<<p1->data<<endl;
+    cout<<"P2 node data="<<p2->data<<endl;
+    cout<<"P3 node data="<<p3->data<<endl;
+    cout<<"P4 node data="<<p4->data<<endl;
+    cout<<"P5 node data="<<p5->data<<endl;
+    cout<<"P6 node data="<<p6->data<<endl;
+    return 0;
+}
