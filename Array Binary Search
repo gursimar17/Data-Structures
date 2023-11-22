@@ -17,7 +17,7 @@ int binary_search(int arr[],int size,int element)
     }
     else
     {
-        high=low-1;
+        high=mid-1;
     }
    }
     return -1;   
